@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Informatika — SMAN 2 Kota Mojokerto</title>
+    
+    <!-- Google Fonts untuk Tipografi Modern & Artistik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           VARIABEL WARNA & TEMA (ELEGANT PURPLE ARCANE)
+           ========================================================================== */
+        :root {
+            --bg-deep: #090314;
+            --bg-card: rgba(23, 11, 41, 0.75);
+            --bg-card-hover: rgba(38, 18, 66, 0.9);
+            --purple-main: #9d4edd;
+            --purple-light: #c77dff;
+            --purple-glow: #e0aaff;
+            --purple-dark: #3c096c;
+            --accent-gold: #ffb703;
+            --text-main: #f3e8ff;
+            --text-muted: #b8a0d0;
+            --border-purple: rgba(157, 78, 221, 0.3);
+            --shadow-purple: 0 8px 32px 0 rgba(114, 9, 183, 0.37);
+            --font-title: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* RESET & GENERAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Canvas Latar Belakang Partikel Cahaya Tersirat */
+        #magic-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ==========================================================================
+           1. BAR NAVIGASI (NAVBAR)
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(9, 3, 20, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-purple);
+            transition: var(--transition-smooth);
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
+        }
+
+        .logo i {
+            color: var(--purple-light);
+            text-shadow: 0 0 10px var(--purple-main);
+            animation: pulse-glow 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--purple-glow);
+            text-shadow: 0 0 8px var(--purple-main);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-main), var(--accent-gold));
+            transition: var(--transition-smooth);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           2. BAGIAN BERANDA (HERO SECTION)
+           ========================================================================== */
+        section {
+            padding: 6rem 8% 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            padding-top: 8rem;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(157, 78, 221, 0.15);
+            border: 1px solid var(--purple-main);
+            border-radius: 30px;
+            color: var(--purple-glow);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+        }
+
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: 2.8rem;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--purple-light) 60%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-main), var(--purple-dark));
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(157, 78, 221, 0.4);
+            border: 1px solid var(--purple-light);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(199, 125, 255, 0.6);
+            background: linear-gradient(135deg, var(--purple-light), var(--purple-main));
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border-purple);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            background: rgba(157, 78, 221, 0.2);
+            border-color: var(--purple-light);
+            color: var(--purple-glow);
+        }
+
+        /* Visual Frame Foto Profil */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .magic-frame {
+            position: relative;
+            width: 320px;
+            height: 380px;
+            border-radius: 24px;
+            padding: 12px;
+            background: linear-gradient(145deg, rgba(157, 78, 221, 0.3), rgba(9, 3, 20, 0.8));
+            border: 1px solid var(--purple-light);
+            box-shadow: var(--shadow-purple);
+        }
+
+        .magic-frame::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 30px;
+            border: 2px dashed var(--purple-main);
+            animation: rotate-border 30s linear infinite;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-img-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-deep);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.1) contrast(1.05);
+            transition: var(--transition-smooth);
+        }
+
+        .magic-frame:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        .orb-badge {
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            background: rgba(23, 11, 41, 0.95);
+            border: 1px solid var(--accent-gold);
+            padding: 10px 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            backdrop-filter: blur(8px);
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           JUDUL SEKSI UMUM
+           ========================================================================== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--purple-light);
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '✦';
+            position: absolute;
+            right: -30px;
+            top: 0;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        /* ==========================================================================
+           3. BAGIAN ABOUT (TENTANG SAYA & HOBI)
+           ========================================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: stretch;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-purple);
+            border-radius: 20px;
+            padding: 2.2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-purple);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .about-card:hover {
+            border-color: var(--purple-light);
+            transform: translateY(-5px);
+        }
+
+        .about-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: var(--purple-glow);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .about-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            font-size: 0.98rem;
+            text-align: justify;
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .info-list i {
+            color: var(--purple-light);
+            width: 20px;
+        }
+
+        /* Style Khusus Riwayat Pendidikan & Prestasi */
+        .edu-item, .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 1rem;
+            background: rgba(9, 3, 20, 0.5);
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .edu-item i, .achievement-item i {
+            color: var(--purple-light);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .edu-item h5, .achievement-item h5 {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .edu-item p, .achievement-item p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            text-align: left;
+        }
+
+        /* Card Hobi */
+        .hobby-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .hobby-card {
+            background: rgba(23, 11, 41, 0.6);
+            border: 1px solid var(--border-purple);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .hobby-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--purple-glow);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .hobby-icon {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 1rem;
+            background: rgba(157, 78, 221, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--purple-light);
+            border: 1px solid var(--purple-main);
+        }
+
+        .hobby-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        .hobby-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ==========================================================================
+           4. BAGIAN KEAHLIAN (SKILLS SECTION)
+           ========================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-purple);
+            border-radius: 18px;
+            padding: 1.8rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--purple-light), var(--accent-gold));
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--purple-glow);
+            box-shadow: var(--shadow-purple);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .skill-header i {
+            font-size: 1.8rem;
+            color: var(--purple-light);
+        }
+
+        .skill-header h4 {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .skill-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .skill-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--purple-main), var(--purple-glow));
+            border-radius: 10px;
+        }
+
+        /* ==========================================================================
+           5. BAGIAN PROYEK INFORMATIKA / GALERI KARYA
+           ========================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-purple);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--purple-light);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #120624;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.08);
+        }
+
+        .project-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(9, 3, 20, 0.85);
+            border: 1px solid var(--purple-light);
+            color: var(--purple-glow);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .project-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(157, 78, 221, 0.15);
+            padding-top: 1rem;
+        }
+
+        .project-link {
+            color: var(--purple-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .project-link:hover {
+            color: var(--accent-gold);
+            gap: 10px;
+        }
+
+        /* ==========================================================================
+           6. BAGIAN KONTAK (CONTACT SECTION)
+           ========================================================================== */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 2.5rem;
+        }
+
+        .contact-info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-purple);
+            border-radius: 20px;
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(157, 78, 221, 0.15);
+            border: 1px solid var(--purple-main);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--purple-light);
+            flex-shrink: 0;
+        }
+
+        .contact-details h5 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .contact-details a, .contact-details p {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .contact-details a:hover {
+            color: var(--purple-glow);
+        }
+
+        /* Form Kontak */
+        .contact-form {
+            background: var(--bg-card);
+            border: 1px solid var(--border-purple);
+            border-radius: 20px;
+            padding: 2.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.3rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(9, 3, 20, 0.7);
+            border: 1px solid var(--border-purple);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--purple-light);
+            box-shadow: 0 0 12px rgba(199, 125, 255, 0.3);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Toast Message Notification */
+        .toast-msg {
+            display: none;
+            margin-top: 1rem;
+            padding: 12px;
+            background: rgba(157, 78, 221, 0.2);
+            border: 1px solid var(--purple-light);
+            color: var(--purple-glow);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           7. FOOTER
+           ========================================================================== */
+        footer {
+            background: #05010b;
+            border-top: 1px solid var(--border-purple);
+            padding: 2.5rem 8%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-socials a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-purple);
+            color: var(--purple-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-socials a:hover {
+            background: var(--purple-main);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 0 12px var(--purple-main);
+        }
+
+        /* RESPONSIF */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                justify-content: center;
+                padding-top: 7rem;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-grid, .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 250px;
+                height: calc(100vh - 70px);
+                background: rgba(15, 6, 30, 0.98);
+                backdrop-filter: blur(15px);
+                border-left: 1px solid var(--border-purple);
+                flex-direction: column;
+                padding: 2.5rem 2rem;
+                gap: 1.8rem;
+                transition: var(--transition-smooth);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .magic-frame {
+                width: 260px;
+                height: 320px;
+            }
+
+            section {
+                padding: 4rem 5% 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Latar Belakang Canvas Partikel Cahaya Unsur Tersirat -->
+    <canvas id="magic-canvas"></canvas>
+
+    <!-- ==========================================================================
+         1. BAR NAVIGASI (NAVBAR)
+         ========================================================================== -->
+    <header>
+        <a href="#beranda" class="logo">
+            <i class="fa-solid fa-sparkles"></i> Arcane.Informatika
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#beranda" class="active"><i class="fa-solid fa-house-chimney"></i> Beranda</a></li>
+            <li><a href="#tentang"><i class="fa-solid fa-user-gear"></i> Tentang Saya</a></li>
+            <li><a href="#keahlian"><i class="fa-solid fa-layer-group"></i> Keahlian</a></li>
+            <li><a href="#proyek"><i class="fa-solid fa-folder-open"></i> Proyek</a></li>
+            <li><a href="#kontak"><i class="fa-solid fa-paper-plane"></i> Kontak</a></li>
+        </ul>
+
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         2. BAGIAN BERANDA (HERO SECTION)
+         ========================================================================== -->
+    <section class="hero" id="beranda">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-graduation-cap"></i> SMA NEGERI 2 KOTA MOJOKERTO
+            </div>
+            <h1 class="hero-title">Muhammad Rizki Ilahi</h1>
+            <p class="hero-subtitle">
+                Halo! Saya <b>Muhammad Rizki Ilahi</b> (16 tahun), siswa kelas <b>11 IPA Informatika</b> di SMAN 2 Kota Mojokerto. Menyukai perpaduan logika algoritma pemrograman, ekspresi seni visual, prestasi akademis, serta analisis ide kreatif. Selamat datang di portofolio digital saya.
+            </p>
+            <div class="hero-buttons">
+                <a href="#proyek" class="btn btn-primary">
+                    <i class="fa-solid fa-compass"></i> Jelajahi Karya
+                </a>
+                <a href="#kontak" class="btn btn-secondary">
+                    <i class="fa-solid fa-envelope"></i> Hubungi Saya
+                </a>
+            </div>
+        </div>
+
+        <!-- Frame Foto Profil -->
+        <div class="hero-visual">
+            <div class="magic-frame">
+                <div class="profile-img-container">
+                    <!-- 
+                        PETUNJUK EDIT FOTO SAYA:
+                        Ganti atribut src="..." di bawah ini dengan lokasi/URL foto Anda!
+                        Contoh: src="foto-saya.jpg"
+                    -->
+                    <img src="rizki.png" 
+                         alt="Foto Profil Siswa Informatika" 
+                         class="profile-img"
+                         onerror="this.onerror=null; this.src='https://placehold.co/400x500/170b2f/c77dff?text=Foto+Siswa+Informatika';">
+                </div>
+                <div class="orb-badge">
+                    <i class="fa-solid fa-star"></i> Kelas 11 IPA
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. BAGIAN ABOUT (TENTANG SAYA & HOBI)
+         ========================================================================== -->
+    <section id="tentang">
+        <div class="section-header">
+            <span class="section-subtitle">Mengenal Lebih Dekat</span>
+            <h2 class="section-title">Tentang Saya</h2>
+        </div>
+
+        <div class="about-grid">
+            <!-- Informasi Akademik & Personal -->
+            <div class="about-card">
+                <div>
+                    <h3><i class="fa-solid fa-user-astronaut"></i> Profil Singkat</h3>
+                    <p>
+                        Saya adalah seorang siswa aktif berusia <b>16 tahun</b> di <b>SMA NEGERI 2 Kota Mojokerto</b>. Memiliki minat mendalam pada logika sains, Informatika, komunikasi jurnalistik, serta estetika visual. Bagi saya, pemrograman adalah seni menyusun struktur logika yang presisi, efisien, dan memiliki keindahan fungsi tersendiri.
+                    </p>
+                </div>
+                <ul class="info-list">
+                    <li><i class="fa-solid fa-id-card"></i> <b>Nama Lengkap:</b> Muhammad Rizki Ilahi</li>
+                    <li><i class="fa-solid fa-cake-candles"></i> <b>Umur:</b> 16 Tahun</li>
+                    <li><i class="fa-solid fa-school"></i> <b>Sekolah saat ini:</b> SMAN 2 Kota Mojokerto (11 IPA)</li>
+                    <li><i class="fa-solid fa-house-user"></i> <b>Alamat:</b> Jl. Flamboyan No.4, Kel. Wates, Kec. Magersari, Kota Mojokerto</li>
+                </ul>
+            </div>
+
+            <!-- Riwayat Pendidikan, Prestasi & Pengalaman -->
+            <div class="about-card">
+                <div>
+                    <h3><i class="fa-solid fa-award"></i> Pendidikan & Prestasi</h3>
+                    
+                    <!-- Riwayat Pendidikan -->
+                    <div style="margin-bottom: 1.2rem;">
+                        <h4 style="font-size: 0.9rem; color: var(--purple-glow); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 1px;">Riwayat Pendidikan</h4>
+                        <div class="edu-item">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <div>
+                                <h5>SMA Negeri 2 Kota Mojokerto</h5>
+                                <p>Kelas 11 IPA Informatika (Sekarang)</p>
+                            </div>
+                        </div>
+                        <div class="edu-item">
+                            <i class="fa-solid fa-school"></i>
+                            <div>
+                                <h5>SMP Negeri 7 Kota Mojokerto</h5>
+                                <p>Pendidikan Menengah Pertama</p>
+                            </div>
+                        </div>
+                        <div class="edu-item">
+                            <i class="fa-solid fa-building-columns"></i>
+                            <div>
+                                <h5>MI Miftahul Ulum Lengkong</h5>
+                                <p>Pendidikan Dasar</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prestasi & Pengalaman -->
+                    <div>
+                        <h4 style="font-size: 0.9rem; color: var(--purple-glow); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 1px;">Prestasi & Pengalaman</h4>
+                        <div class="achievement-item">
+                            <i class="fa-solid fa-trophy" style="color: var(--accent-gold);"></i>
+                            <div>
+                                <h5>Juara Olimpiade Bahasa Inggris</h5>
+                                <p>Meraih kejuaraan beberapa kali dalam skala Kota dan Provinsi.</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fa-solid fa-newspaper"></i>
+                            <div>
+                                <h5>Pengalaman Sosialisasi Jurnalistik</h5>
+                                <p>Aktif mengikuti kegiatan serta edukasi publik bidang media & jurnalistik.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minat & Hobi Kreatif -->
+            <div class="about-card" style="grid-column: 1 / -1;">
+                <h3><i class="fa-solid fa-icons"></i> Minat & Hobi Kreatif</h3>
+                <div class="hobby-container">
+                    
+                    <div class="hobby-card">
+                        <div class="hobby-icon">
+                            <i class="fa-solid fa-paintbrush"></i>
+                        </div>
+                        <h4>Melukis</h4>
+                        <p>Mengekspresikan komposisi warna dan keindahan visual pada kanvas maupun digital.</p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">
+                            <i class="fa-solid fa-circle-play"></i>
+                        </div>
+                        <h4>Video Esai</h4>
+                        <p>Menonton dan mengkaji esai video seputar filosofi, teknologi, dan sinematografi.</p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">
+                            <i class="fa-solid fa-tv"></i>
+                        </div>
+                        <h4>Series Digital</h4>
+                        <p>Menikmati alur cerita fiksi ilmiah dan eksplorasi narasi dalam series digital pilihan.</p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h4>Eksplorasi Kode</h4>
+                        <p>Mengasah logika *problem solving* Informatika dan membuat tampilan web yang rapi.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. BAGIAN KEAHLIAN (SKILLS SECTION)
+         ========================================================================== -->
+    <section id="keahlian">
+        <div class="section-header">
+            <span class="section-subtitle">Keterampilan & Kompetensi</span>
+            <h2 class="section-title">Keahlian Informatika & Seni</h2>
+        </div>
+
+        <div class="skills-grid">
+            
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-brands fa-html5"></i>
+                    <h4>HTML & CSS Native</h4>
+                </div>
+                <p class="skill-desc">Membangun struktur dan tata letak halaman web yang rapi, artistik, dan responsif.</p>
+                <div class="skill-bar-bg">
+                    <div class="skill-bar-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-solid fa-brain"></i>
+                    <h4>Logika Algoritma</h4>
+                </div>
+                <p class="skill-desc">Pemahaman dasar struktur data, alur berpikir runtut, dan pemecahan masalah Informatika.</p>
+                <div class="skill-bar-bg">
+                    <div class="skill-bar-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-solid fa-palette"></i>
+                    <h4>Seni Lukis & Desain</h4>
+                </div>
+                <p class="skill-desc">Kepekaan estetik, harmonisasi warna, serta tata letak karya seni fisik dan digital.</p>
+                <div class="skill-bar-bg">
+                    <div class="skill-bar-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-header">
+                    <i class="fa-solid fa-photo-film"></i>
+                    <h4>Analisis Media Video</h4>
+                </div>
+                <p class="skill-desc">Mengkaji penyampaian pesan, struktur narasi, dan visual dalam bentuk video esai.</p>
+                <div class="skill-bar-bg">
+                    <div class="skill-bar-fill" style="width: 88%;"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. BAGIAN PROYEK INFORMATIKA / GALERI KARYA
+         ========================================================================== -->
+    <section id="proyek">
+        <div class="section-header">
+            <span class="section-subtitle">Portofolio Karya & Tugas</span>
+            <h2 class="section-title">Hasil Karya Terpilih</h2>
+        </div>
+
+        <div class="projects-grid">
+            
+            <!-- Proyek 1 -->
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <!-- PETUNJUK EDIT GAMBAR PROYEK 1: Ganti URL src -->
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Web Portofolio Digital" class="project-img" onerror="this.src='https://placehold.co/600x400/170b2f/c77dff?text=Web+Portofolio';">
+                    <span class="project-tag">Tugas Informatika</span>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Web Portofolio Digital</h3>
+                    <p class="project-desc">Website portofolio pribadi bertema warna ungu modern yang responsif dan dibangun menggunakan HTML-CSS native.</p>
+                    <div class="project-footer">
+                        <span style="font-size: 0.8rem; color: var(--purple-light);"><i class="fa-solid fa-code"></i> HTML5 / CSS3</span>
+                        <a href="#beranda" class="project-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyek 2 -->
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <!-- PETUNJUK EDIT GAMBAR PROYEK 2: Ganti URL src -->
+                    <img src="gyro.jpgssss" alt="Galeri Lukisan Estetik" class="project-img" onerror="this.src='https://placehold.co/600x400/170b2f/c77dff?text=Karya+Lukis';">
+                    <span class="project-tag">Karya Seni</span>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Eksplorasi Lukisan Visual</h3>
+                    <p class="project-desc">Koleksi eksperimen lukisan artistik dengan komposisi warna ekspresif dan nuansa surealis.</p>
+                    <div class="project-footer">
+                        <span style="font-size: 0.8rem; color: var(--purple-light);"><i class="fa-solid fa-paintbrush"></i> Canvas Art</span>
+                        <a href="#" class="project-link" onclick="return false;">Lihat Galeri <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyek 3 -->
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <!-- PETUNJUK EDIT GAMBAR PROYEK 3: Ganti URL src -->
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Rangkuman Esai Digital" class="project-img" onerror="this.src='https://placehold.co/600x400/170b2f/c77dff?text=Rangkuman+Esai';">
+                    <span class="project-tag">Studi Media</span>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Catatan Kritis Video Esai</h3>
+                    <p class="project-desc">Rangkuman analisis mengenai perkembangan teknologi digital dan dampaknya terhadap perkembangan industri kreatif.</p>
+                    <div class="project-footer">
+                        <span style="font-size: 0.8rem; color: var(--purple-light);"><i class="fa-solid fa-file-pen"></i> Literasi Digital</span>
+                        <a href="#" class="project-link" onclick="return false;">Baca Esai <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. BAGIAN KONTAK (CONTACT SECTION)
+         ========================================================================== -->
+    <section id="kontak">
+        <div class="section-header">
+            <span class="section-subtitle">Ruang Komunikasi</span>
+            <h2 class="section-title">Hubungi Saya</h2>
+        </div>
+
+        <div class="contact-container">
+            <!-- Informasi Kontak Lengkap -->
+            <div class="contact-info-box">
+                <div>
+                    <h3 style="font-family: var(--font-title); font-size: 1.3rem; color: var(--purple-glow); margin-bottom: 1.5rem;">
+                        <i class="fa-solid fa-address-book"></i> Saluran Kontak
+                    </h3>
+
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Surel / Email</h5>
+                            <a href="mailto:rizkilahijaya42@gmail.com">rizkilahijaya42@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <!-- Nomor Telepon -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Nomor Telepon / WA</h5>
+                            <a href="https://wa.me/6281217310359" target="_blank">081217310359</a>
+                        </div>
+                    </div>
+
+                    <!-- Alamat Rumah -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Alamat Kediaman</h5>
+                            <p>Jl. Flamboyan No.4, Kel. Wates, Kec. Magersari, Kota Mojokerto</p>
+                        </div>
+                    </div>
+
+                    <!-- Lokasi Sekolah -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Sekolah</h5>
+                            <p>SMA Negeri 2 Kota Mojokerto</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+                    "Terbuka untuk diskusi seputar tugas Informatika, proyek seni lukis, maupun berbagi rekomendasi video esai."
+                </p>
+            </div>
+
+            <!-- Form Kontak -->
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name"><i class="fa-solid fa-user"></i> Nama Lengkap</label>
+                    <input type="text" id="name" class="form-control" placeholder="Masukkan nama Anda..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email"><i class="fa-solid fa-at"></i> Alamat Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="nama@domain.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject"><i class="fa-solid fa-tag"></i> Subjek Pesan</label>
+                    <input type="text" id="subject" class="form-control" placeholder="Contoh: Diskusi Tugas Informatika" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message"><i class="fa-solid fa-comment-dots"></i> Isi Pesan</label>
+                    <textarea id="message" class="form-control" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+                </button>
+
+                <div class="toast-msg" id="toastMsg">
+                    <i class="fa-solid fa-circle-check"></i> Pesan Anda berhasil terkirim!
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. FOOTER
+         ========================================================================== -->
+    <footer>
+        <div class="footer-logo">
+            <i class="fa-solid fa-sparkles"></i> SMA NEGERI 2 KOTA MOJOKERTO
+        </div>
+        <p>Portofolio Siswa Informatika Kelas 11 IPA &copy; 2026. Dibuat dengan dedikasi kode & seni.</p>
+        
+        <div class="footer-socials">
+            <a href="mailto:rizkilahijaya42@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://wa.me/6281217310359" title="WhatsApp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://github.com" title="GitHub" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram.com" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         JAVASCRIPT INTERAKTIF
+         ========================================================================== -->
+    <script>
+        // 1. Toggle Menu Navigasi Seluler
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars-staggered');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars-staggered');
+            }
+        });
+
+        // Tutup menu seluler saat link diklik
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fa-solid fa-bars-staggered';
+            });
+        });
+
+        // Highlight link aktif saat scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.classList.add('active');
+                }
+            });
+        });
+
+        // 2. Handling Form Submit
+        const contactForm = document.getElementById('contactForm');
+        const toastMsg = document.getElementById('toastMsg');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            toastMsg.style.display = 'block';
+            toastMsg.innerHTML = '<i class="fa-solid fa-circle-check"></i> Pesan Anda telah berhasil terkirim! Terima kasih.';
+            
+            contactForm.reset();
+
+            setTimeout(() => {
+                toastMsg.style.display = 'none';
+            }, 5000);
+        });
+
+        // 3. Animasi Partikel Cahaya Latar Belakang (Subtle Ambient Glow)
+        const canvas = document.getElementById('magic-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 40;
+
+        class AmbientParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.color = Math.random() > 0.3 ? '#c77dff' : '#ffb703';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new AmbientParticle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+    </script>
+</body>
+</html>
